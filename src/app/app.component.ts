@@ -27,7 +27,7 @@ import { MatButtonModule, MatIconButton } from '@angular/material/button';
   styleUrls:   ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['thumbnail','first','last', 'gender', 'email','city'];
+  displayedColumns = ['thumbnail','first','last', 'gender', 'email','city', 'delete'];
   dataSource = new MatTableDataSource<User>([]);
   selectedGender = '';
 
@@ -70,4 +70,12 @@ export class AppComponent implements OnInit, AfterViewInit {
     const nextDir = this.sort.direction === 'asc' ? 'desc' : 'asc';
     this.sort.sort({ id: 'first', start: nextDir, disableClear: true });
   }
+removeUser(user: User) {
+  const idx = this.dataSource.data.indexOf(user);
+  if (idx > -1) {
+    this.dataSource.data.splice(idx, 1);
+    this.dataSource.data = [...this.dataSource.data];
+  }
+}
+
 }
