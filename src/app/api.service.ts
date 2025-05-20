@@ -22,7 +22,7 @@ export interface User {
 })
 
 export class ApiService {
-  private url = 'https://randomuser.me/api/?results=500'
+  private url = 'https://randomuser.me/api/?results=200'
   constructor(private http: HttpClient) {
   }
     getUsers(): Observable<User[]> {

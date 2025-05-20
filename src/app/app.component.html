@@ -10,14 +10,20 @@
 
 <mat-form-field>
   <mat-label>Gender</mat-label>
-  <mat-select (selectionChange)="applyGenderFilter($event.value)">
+  <mat-select [(value)]="selectedGender">
     <mat-option value="">All</mat-option>
     <mat-option value="Male">Male</mat-option>
     <mat-option value="Female">Female</mat-option>
   </mat-select>
 </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<button mat-flat-button color="primary" (click)="applyFilters()">Search</button>
+<button mat-flat-button (click)="clearFilters()">Remove Filters</button>
+<button mat-flat-button *ngIf="sort" (click)="toggleSort()">
+  Sort First Name {{ sort?.direction === 'asc' ? '(A→Z)' : '(Z→A)' }}
+</button>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   <ng-container matColumnDef="thumbnail">
     <th mat-header-cell *matHeaderCellDef>Picture</th>
     <td mat-cell *matCellDef="let user">
