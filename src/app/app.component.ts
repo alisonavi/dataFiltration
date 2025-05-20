@@ -12,7 +12,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['gender', 'first', 'last'];
+  displayedColumns = ['thumbnail', 'first', 'last', 'gender', 'email', 'city' ];
   dataSource = new MatTableDataSource<User>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 

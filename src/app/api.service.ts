@@ -12,6 +12,9 @@ export interface User {
   picture: {
     thumbnail: string
   }
+  location: {
+    city: string
+  }
   gender: string,
 }
 @Injectable({
@@ -19,7 +22,7 @@ export interface User {
 })
 
 export class ApiService {
-  private url = 'https://randomuser.me/api/?results=50'
+  private url = 'https://randomuser.me/api/?results=100'
   constructor(private http: HttpClient) {
    }
     getUsers(): Observable<User[]> {
