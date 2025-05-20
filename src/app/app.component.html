@@ -8,6 +8,15 @@
   </ul>
 </ng-container> -->
 
+<mat-form-field>
+  <mat-label>Gender</mat-label>
+  <mat-select (selectionChange)="applyGenderFilter($event.value)">
+    <mat-option value="">All</mat-option>
+    <mat-option value="Male">Male</mat-option>
+    <mat-option value="Female">Female</mat-option>
+  </mat-select>
+</mat-form-field>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="thumbnail">
     <th mat-header-cell *matHeaderCellDef>Picture</th>
@@ -49,6 +58,6 @@
 </table>
 
 <mat-paginator
-  [pageSizeOptions]="[20, 10, 5]"
+  [pageSizeOptions]="[25, 50, 100]"
   showFirstLastButtons
 ></mat-paginator>
