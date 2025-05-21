@@ -30,7 +30,7 @@ import {MatIcon} from '@angular/material/icon';
 export class AppComponent implements OnInit, AfterViewInit {
   displayedColumns = [
     'thumbnail','first','last',
-    'gender','email','city','delete'
+    'gender','email','city','delete', 'edit'
   ];
   dataSource = new MatTableDataSource<User>([]);
   selectedGender = '';
@@ -116,6 +116,21 @@ export class AppComponent implements OnInit, AfterViewInit {
       if (result) {
         this.dataSource.data = [ result, ...this.dataSource.data ];
         this.paginator.firstPage();
+      }
+    });
+  }
+  openEditDialog(user: User) {
+    this.newUser = {...user, name: {...user.name}, picture: {...user.picture}, location: {...user.location} };
+
+    const ref = this.dialog.open(this.addPersonDialog, {
+      width: '400px'
+    });
+    ref.afterClosed().subscribe((result: User|undefined) => {
+      if (!result) return;
+      const idx = this.dataSource.data.findIndex(u => u.id === user.id);
+      if (idx > -1) {
+        this.dataSource.data[idx] = result;
+        this.dataSource.data = [...this.dataSource.data];
       }
     });
   }
