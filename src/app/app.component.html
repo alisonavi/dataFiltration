@@ -15,7 +15,6 @@
 <button mat-flat-button color="accent" (click)="openAddDialog()">
   Add Person
 </button>
-<!-- edit person on the new page and data already would be there -->
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   <ng-container matColumnDef="thumbnail">
     <th mat-header-cell *matHeaderCellDef>Picture</th>
@@ -109,3 +108,6 @@
     </button>
   </mat-dialog-actions>
 </ng-template>
+
+<a routerLink="/dashboard">DSDSDS</a>
+<router-outlet></router-outlet>

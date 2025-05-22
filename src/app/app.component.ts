@@ -11,6 +11,7 @@ import { MatDialogModule, MatDialog  } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { ApiService, User } from './api.service';
 import {MatIcon} from '@angular/material/icon';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 @Component({
   standalone: true,
   selector: 'app-root',
@@ -22,16 +23,15 @@ import {MatIcon} from '@angular/material/icon';
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
-    MatSelectModule, MatInputModule, MatButtonModule, MatDialogModule, MatIcon, MatDialogModule, MatInputModule
+    MatSelectModule, MatInputModule, MatButtonModule,
+    MatDialogModule, MatIcon, MatDialogModule, MatInputModule,
+    RouterLink, RouterOutlet
   ],
   templateUrl:'./app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  displayedColumns = [
-    'thumbnail','first','last',
-    'gender','email','city','delete', 'edit'
-  ];
+  displayedColumns = ['thumbnail', 'first', 'last', 'gender', 'email', 'city', 'delete', 'edit'];
   dataSource = new MatTableDataSource<User>([]);
   selectedGender = '';
 
@@ -68,11 +68,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort      = this.sort;
+    this.dataSource.sort = this.sort; 
   }
-
+  
   applyFilters() {
     this.dataSource.filter = this.selectedGender.trim();
     this.paginator.firstPage();
@@ -105,7 +105,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       name:   { first: '', last: '' },
       picture: { thumbnail: '' },
       location: { city: '' },
-      id:      Date.now()
+      id: Date.now()
     };
 
     const ref = this.dialog.open(this.addPersonDialog, {
